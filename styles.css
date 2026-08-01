@@ -866,9 +866,16 @@ a:hover { color: var(--gold-bright); }
     justify-content: center;
     gap: 34px;
     transform: translateY(-100%);
-    transition: transform 300ms ease-out;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 300ms ease-out, visibility 0s linear 300ms;
   }
-  .nav-menu.open { transform: none; }
+  .nav-menu.open {
+    transform: none;
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 300ms ease-out, visibility 0s linear;
+  }
   .nav-menu a { font-size: 1.15rem; }
   .nav-phone { display: block; }
   .nav-toggle { position: relative; z-index: 110; }
