@@ -75,12 +75,24 @@ a:hover { color: var(--gold-bright); }
   inset: 0 0 auto 0;
   z-index: 100;
   padding: 18px 0;
-  transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+  transition: padding var(--transition);
+}
+/* Scrolled background/blur lives on a pseudo-element, not .site-header itself —
+   backdrop-filter on the header would create a new CSS containing block, trapping
+   the mobile menu's position:fixed inside the header's small box instead of the viewport. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: background var(--transition), backdrop-filter var(--transition), box-shadow var(--transition);
 }
 .site-header.scrolled {
+  padding: 10px 0;
+}
+.site-header.scrolled::before {
   background: rgba(11, 11, 13, 0.92);
   backdrop-filter: blur(12px);
-  padding: 10px 0;
   box-shadow: 0 1px 0 var(--border);
 }
 
