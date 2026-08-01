@@ -165,5 +165,16 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") lbShow(lbIndex + 1);
 });
 
+// --- Logo → back to top ---
+// Native `href="#top"` anchoring doesn't reliably scroll here: the target (<header
+// id="top">) is position:fixed, so some browsers treat it as always "in view" and
+// skip the scroll entirely.
+document.querySelectorAll('a[href="#top"]').forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
 // --- Footer year ---
 document.getElementById("year").textContent = new Date().getFullYear();
